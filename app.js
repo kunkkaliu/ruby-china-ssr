@@ -10,10 +10,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use('/css', express.static(path.join(__dirname, 'dist/css')));
-app.use('/js', express.static(path.join(__dirname, 'dist/js')));
-app.use('/fonts', express.static(path.join(__dirname, 'dist/fonts')));
-app.use('/images', express.static(path.join(__dirname, 'dist/images')));
+app.use('/static', express.static(path.join(__dirname, 'dist/static')));
+// app.use('/css', express.static(path.join(__dirname, 'dist/css')));
+// app.use('/js', express.static(path.join(__dirname, 'dist/js')));
+// app.use('/fonts', express.static(path.join(__dirname, 'dist/fonts')));
+// app.use('/images', express.static(path.join(__dirname, 'dist/images')));
 app.use('/favicon.ico', express.static(path.join(__dirname, 'dist/favicon.ico')));
 
 app.use(serverRender);

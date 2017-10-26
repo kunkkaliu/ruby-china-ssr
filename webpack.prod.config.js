@@ -8,12 +8,12 @@ var AssetsPlugin = require('assets-webpack-plugin');
 base.devtool = 'source-map';
 // add hot-reload related code to entry chunks
 Object.keys(base.entry).forEach(function (name) {
-    base.entry[name] = ['babel-polyfill'].concat(base.entry[name]);
+    base.entry[name] = [].concat(base.entry[name]);
 });
 // base.entry.unshift('babel-polyfill');
 // use hash filename to support long-term caching
-base.output.filename = 'js/[name].[chunkhash].js';
-base.output.chunkFilename = 'js/[name].[chunkhash].js';
+base.output.filename = 'static/js/[name].[chunkhash].js';
+base.output.chunkFilename = 'static/js/[name].[chunkhash].js';
 // add webpack plugins
 
 // 减小bundle size是个很大的学问...
@@ -42,13 +42,13 @@ base.plugins.push(
         }
     }),
     new Md5HashPlugin(),
-    new ExtractTextPlugin("css/[name].[contenthash].css", {
+    new ExtractTextPlugin("static/css/[name].[contenthash].css", {
         allChunks: true
     }),
     // extract vendor chunks
     new webpack.optimize.CommonsChunkPlugin({
         name: 'common',
-        filename: 'js/common.[chunkhash].js',
+        filename: 'static/js/common.[chunkhash].js',
         minChunks: function (module, count) {
             return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
         }

@@ -5,7 +5,7 @@ var nodeExternals = require('webpack-node-externals');
 var distPath = path.join(__dirname, 'dist_server');
 module.exports = {
     entry: {
-        main: ['babel-polyfill', './src/serverRender.jsx']
+        main: ['./src/serverRender.jsx']
     },
     target: 'node',
     output: {

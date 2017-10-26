@@ -13,7 +13,7 @@ module.exports = {
     target: 'web',
     output: {
         path: distPath,
-        filename: 'js/[name].js',
+        filename: 'static/js/[name].js',
         publicPath: '/'
     },
     eslint: {
@@ -53,11 +53,11 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif)(\?.*)?$/,
-                loader: 'url-loader?limit=10240&name=images/[name].[hash:8].[ext]'
+                loader: 'url-loader?limit=10240&name=static/images/[name].[hash:8].[ext]'
             },
             {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-                loader: 'url-loader?limit=10240&name=fonts/[name].[hash:8].[ext]'
+                loader: 'url-loader?limit=10240&name=static/fonts/[name].[hash:8].[ext]'
             },
             {
                 test: /\.css?$/,
