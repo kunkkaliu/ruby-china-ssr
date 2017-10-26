@@ -20,9 +20,9 @@ class Topics extends React.Component {
         };
     }
 
-    static onEnter(store, type) {
+    static onEnter(store, params) {
         const { promise } = store.dispatch(getTopics({
-            type: type || 'last_actived',
+            type: (params && params.name) || 'last_actived',
         })).payload;
         return [promise];
     }

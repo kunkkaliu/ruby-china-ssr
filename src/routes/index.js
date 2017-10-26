@@ -1,6 +1,7 @@
 import App from '../views/App/index.jsx';
 import Dashboard from '../views/Dashboard/index.jsx';
 import Topics from '../views/Topics/index.jsx';
+import TopicDetail from '../views/TopicDetail/index.jsx';
 import Error from '../components/Error/index.jsx';
 
 // 按需加载组件, 不过有问题, 依赖的ant - design的组件还是在每一个子模块中都加载了
@@ -25,6 +26,9 @@ const routes = [
             }, {
                 path: '/topics?type=:name',
                 component: Topics,
+            }, {
+                path: '/topics/:id',
+                component: TopicDetail,
             }, {
                 path: '/*',
                 component: Error,

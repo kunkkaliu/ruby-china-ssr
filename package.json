@@ -3,8 +3,9 @@
     "test1": "mocha tests/.setup.js tests/**/*-test.js --compilers css:mocha-compiler.js",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "build": "rimraf ./dist && webpack --config webpack.prod.config.js --progress --colors",
+    "build_client": "rimraf ./dist && webpack --config webpack.prod.config.js --progress --colors",
     "build_server": "rimraf ./dist_server && webpack --config webpack.server.config.js --progress --colors",
+    "build": "npm run build_client && npm run build_server",
     "dev": "node devServer",
     "ssr": "node app"
   },

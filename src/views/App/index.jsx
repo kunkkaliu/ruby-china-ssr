@@ -14,9 +14,8 @@ class App extends React.PureComponent {
             const branch = matchRoutes(routes, nextLocation.pathname + nextLocation.search);
             branch.forEach(({ route, match }) => {
                 const { onEnter } = route.component;
-                const type = match && match.params && match.params.name;
                 if (onEnter instanceof Function) {
-                    onEnter(this.context.store, type);
+                    onEnter(this.context.store, match && match.params);
                 }
             });
         }

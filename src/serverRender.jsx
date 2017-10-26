@@ -40,9 +40,8 @@ module.exports = (req, res) => {
     let promises = [];
     branch.forEach(({route, match}) => {
         const onEnter = route.component.onEnter;
-        const type = match && match.params && match.params.name;
         if(onEnter instanceof Function) {
-            promises = promises.concat(onEnter(store, type));
+            promises = promises.concat(onEnter(store, match && match.params));
         } else {
             promises = promises.concat(Promise.resolve(null))
         }
