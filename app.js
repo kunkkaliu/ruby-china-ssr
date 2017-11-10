@@ -10,6 +10,16 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(function(req, res, next){
+    var static = /^\/static/g;
+    var suffix = /\.map$/g;
+    if(static.test(req.path) && suffix.test(req.path)){
+	res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
+	return res.end('请求非法');
+    }else {
+	next();
+    }
+});
 app.use('/static', express.static(path.join(__dirname, 'dist/static')));
 // app.use('/css', express.static(path.join(__dirname, 'dist/css')));
 // app.use('/js', express.static(path.join(__dirname, 'dist/js')));
