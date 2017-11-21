@@ -101,6 +101,7 @@
     "ignore-loader": "^0.1.2",
     "jest": "^21.0.1",
     "json-loader": "^0.5.7",
+    "koa": "^2.3.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "md5-hash-webpack-plugin": "^0.1.0",
