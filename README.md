@@ -1,3 +1,5 @@
+一个基于react, redux, react-router的服务端渲染的例子
+
 ## Run Dev
 
 ```shell
@@ -14,4 +16,10 @@ $ npm test
 
 ```shell
 $ npm run build
+```
+
+## Start
+
+```shell
+$ pm2 start app.js
 ```
