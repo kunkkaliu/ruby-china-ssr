@@ -4,7 +4,6 @@ import { renderRoutes, matchRoutes } from 'react-router-config';
 import Navbar from '../../components/Navbar/index.jsx';
 import Footer from '../../components/Footer/index.jsx';
 import routes from '../../routes';
-import './index.less';
 
 class App extends React.PureComponent {
     componentWillReceiveProps(nextProps) {

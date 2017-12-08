@@ -11,7 +11,7 @@ class Excellent extends React.PureComponent {
         const { length } = topics;
         return (
             <div className='panel panel-default no-margin-bottom-xs topic-lists reset-panel-xs'>
-                <div className='panel-heading margin-xs'>
+                <div className='panel-heading'>
                     社区精华帖
                 </div>
                 <div className='row reset-row-xs'>

@@ -9,7 +9,6 @@ import mapToProps from './mapping';
 import Paginate from '../../components/Paginate/index.jsx';
 import Lists from '../../components/Lists/index.jsx';
 import { getTopics } from '../../actions/common';
-import './index.less';
 
 @connect(mapToProps.mapStateToProps, mapToProps.mapDispatchToProps)
 class Topics extends React.Component {
