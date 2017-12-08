@@ -16,6 +16,7 @@ const normalAxios = axios.create({
     headers: {
         Accept: 'application/json',
     },
+    timeout: 10000,
 });
 
 // 统一处理所有http请求和响应, 在请求发出与返回时进行拦截, 在这里可以做loading页面的展示与隐藏, token失效是否跳转到登录页等事情;
