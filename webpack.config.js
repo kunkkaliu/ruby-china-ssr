@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var distPath = path.join(__dirname, 'dist');
 
@@ -30,7 +31,11 @@ module.exports = {
             chunks: ['common', 'main'],
             favicon: __dirname + '/favicon.ico',
             chunksSortMode: 'dependency'
-        })
+        }),
+        new CopyWebpackPlugin([{
+            from: path.join(__dirname, '/src/assets/lib'),
+            to: path.join(__dirname, '/dist/static/lib')
+        }])
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']
