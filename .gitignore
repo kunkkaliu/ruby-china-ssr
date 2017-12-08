@@ -1,6 +1,8 @@
 node_modules/
 coverage/
-npm-debug.log
+dist/
+dist_server/
+npm-debug.log*
 .DS_Store
 .vscode
 .idea/
