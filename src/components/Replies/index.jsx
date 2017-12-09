@@ -29,7 +29,7 @@ class Replies extends React.PureComponent {
             </div>
         ));
         return (
-            <div className='panel panel-default replies-wrap'>
+            <div className='panel panel-default replies-wrap no-margin-bottom-xs'>
                 <div className='panel-heading'>
                     <p className='light-gray-color'>共收到 {count} 条回复</p>
                 </div>

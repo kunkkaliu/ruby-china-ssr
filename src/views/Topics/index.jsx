@@ -44,7 +44,7 @@ class Topics extends React.Component {
     render() {
         const { topics } = this.props;
         return (
-            <div className='panel panel-default topic-lists'>
+            <div className='panel panel-default topic-lists no-margin-bottom-xs'>
                 <div className='panel-heading text-right'>
                     <span className='separator light-gray-color'>查看:</span>
                     <Link to='/topics?type=last_actived' onClick={() => this.handleClick('last_actived')}>默认</Link>
