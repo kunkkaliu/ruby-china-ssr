@@ -6,9 +6,9 @@ const Footer = () => {
     return (
         <div className='footer container'>
             <span className='license'>
-                Designed by
-                <a target='_blank' rel="noopener noreferrer" href='https://github.com/kunkkaliu/react-redux-bootstrap'>  kunkkaliu</a>
-                © 2017
+                ©
+                <a target='_blank' rel="noopener noreferrer" href='https://github.com/kunkkaliu/'>kunkkaliu </a>
+                <a target='_blank' rel="noopener noreferrer" href='http://www.miitbeian.gov.cn/'>京ICP备17069909号</a>
             </span>
         </div>
     );
