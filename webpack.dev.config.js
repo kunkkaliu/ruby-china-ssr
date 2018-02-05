@@ -23,6 +23,12 @@ base.plugins.push(
             return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
         }
     }),
+    // extract manifest chunks
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        filename: 'static/js/manifest.js',
+        chunks: ['common']
+    }),
     new webpack.optimize.DedupePlugin(),
     // 允许错误不打断程序
     new webpack.NoErrorsPlugin()

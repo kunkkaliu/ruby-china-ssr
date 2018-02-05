@@ -28,7 +28,7 @@ module.exports = {
                 minifyCSS: true,
                 minifyJS: true
             },
-            chunks: ['common', 'main'],
+            chunks: ['manifest', 'common', 'main'],
             favicon: __dirname + '/favicon.ico',
             chunksSortMode: 'dependency'
         }),

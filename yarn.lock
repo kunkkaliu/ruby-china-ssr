@@ -2989,9 +2989,13 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.1.5, is-buffer@~1.1.1:
+is-buffer@^1.1.5:
   version "1.1.5"
   resolved "http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
+
+is-buffer@~1.1.1:
+  version "1.1.6"
+  resolved "http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
 is-builtin-module@^1.0.0:
   version "1.0.0"
@@ -3972,13 +3976,7 @@ math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "http://registry.npm.taobao.org/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
 
-md5-hash-webpack-plugin@^0.1.0:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/md5-hash-webpack-plugin/download/md5-hash-webpack-plugin-0.1.1.tgz#77dd7252f01d7b62d03f67290c9849d883fd80fe"
-  dependencies:
-    md5 "^2.0.0"
-
-md5@^2.0.0:
+md5@^2.2.1:
   version "2.2.1"
   resolved "http://registry.npm.taobao.org/md5/download/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
   dependencies:
@@ -5760,6 +5758,12 @@ spdx-expression-parse@~1.0.0:
 spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "http://registry.npm.taobao.org/spdx-license-ids/download/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
+
+split-hash-webpack-plugin@^0.0.1:
+  version "0.0.1"
+  resolved "http://registry.npm.taobao.org/split-hash-webpack-plugin/download/split-hash-webpack-plugin-0.0.1.tgz#e5ce68b3e63c5fd6078848d0976f348ae2cdb33c"
+  dependencies:
+    md5 "^2.2.1"
 
 sprintf-js@~1.0.2:
   version "1.0.3"

@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var base = require('./webpack.config');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var Md5HashPlugin = require('md5-hash-webpack-plugin');
+var SplitHashPlugin = require('split-hash-webpack-plugin');
 var AssetsPlugin = require('assets-webpack-plugin');
 
 base.devtool = 'source-map';
@@ -41,7 +41,7 @@ base.plugins.push(
             comments: false
         }
     }),
-    new Md5HashPlugin(),
+    new SplitHashPlugin(),
     new ExtractTextPlugin("static/css/[name].[contenthash].css", {
         allChunks: true
     }),
@@ -52,6 +52,12 @@ base.plugins.push(
         minChunks: function (module, count) {
             return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
         }
+    }),
+    // extract manifest chunks
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        filename: 'static/js/manifest.[chunkhash].js',
+        chunks: ['common']
     }),
     new webpack.optimize.DedupePlugin(),
     // 允许错误不打断程序
