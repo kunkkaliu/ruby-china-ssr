@@ -24,6 +24,7 @@ function renderFullPage(renderedContent, initialState) {
       <script>
         window.INITIAL_STATE = ${JSON.stringify(initialState)};
       </script>
+      <script src="${STATIC_PREFIX}${ASSETS.manifest.js}"></script>
       <script src="${STATIC_PREFIX}${ASSETS.common.js}"></script>
       <script src="${STATIC_PREFIX}${ASSETS.main.js}"></script>
     </body>
