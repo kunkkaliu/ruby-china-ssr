@@ -11,14 +11,15 @@ Object.keys(base.entry).forEach(function (name) {
 // base.entry.unshift('babel-polyfill', 'react-hot-loader/patch', 'webpack-hot-middleware/client');
 base.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("static/css/[name].css", {
+    new ExtractTextPlugin({
+        filename: 'static/css/[name].css',
         allChunks: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: 'common',
         filename: 'static/js/common.js',
         minChunks: function (module, count) {
-            return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
+            return module.context && module.context.indexOf('node_modules') >= 0;
         }
     }),
     // extract manifest chunks

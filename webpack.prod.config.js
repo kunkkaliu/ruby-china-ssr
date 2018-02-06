@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var base = require('./webpack.config');
 var AssetsPlugin = require('assets-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 base.devtool = 'source-map';
 // add hot-reload related code to entry chunks
@@ -37,22 +38,35 @@ base.plugins.push(
     //         comments: false
     //     }
     // }),
+    new ExtractTextPlugin({
+        filename: 'static/css/[name].[contenthash].css',
+        allChunks: true
+    }),
     new UglifyJsPlugin({
         sourceMap: true,
         uglifyOptions: {
             compress: {
                 warnings: false,
                 drop_debugger: true,
-                drop_console: true
+                drop_console: true,
+                conditionals: true,
+                unused: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true
             }
         }
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     // extract vendor chunks
     new webpack.optimize.CommonsChunkPlugin({
         name: 'common',
         filename: 'static/js/common.[chunkhash].js',
         minChunks: function (module, count) {
-            return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
+            return module.context && module.context.indexOf('node_modules') >= 0;
         }
     }),
     // extract manifest chunks

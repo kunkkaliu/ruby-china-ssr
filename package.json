@@ -54,6 +54,7 @@
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
+    "npx": "^9.7.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -100,7 +101,6 @@
     "identity-obj-proxy": "^3.0.0",
     "ignore-loader": "^0.1.2",
     "jest": "^21.0.1",
-    "json-loader": "^0.5.7",
     "koa": "^2.3.0",
     "less": "^2.7.1",
     "less-loader": "^4.0.5",
@@ -117,5 +117,8 @@
     "webpack-dev-server": "^2.11.1",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-node-externals": "^1.6.0"
-  }
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

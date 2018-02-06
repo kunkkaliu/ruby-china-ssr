@@ -8,7 +8,7 @@ import mapToProps from './mapping';
 import TopicInfo from '../../components/TopicInfo/index.jsx';
 import Replies from '../../components/Replies/index.jsx';
 import { getTopic, getReplies } from '../../actions/common';
-import '../../assets/style/Markdown.css';
+import '../../assets/style/Markdown.less';
 
 @connect(mapToProps.mapStateToProps, mapToProps.mapDispatchToProps)
 class TopicDetail extends React.Component {

@@ -4,15 +4,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const extractCSS = new ExtractTextPlugin({
-    filename: 'static/css/[name]-one.[contenthash].css',
-    allChunks: true
-});
-const extractLESS = new ExtractTextPlugin({
-    filename: 'static/css/[name]-two.[contenthash].css',
-    allChunks: true
-});
-
 var distPath = path.join(__dirname, 'dist');
 
 module.exports = {
@@ -46,8 +37,7 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, '/src/assets/lib'),
             to: path.join(__dirname, '/dist/static/lib')
-        }]),
-        extractCSS
+        }])
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -84,17 +74,13 @@ module.exports = {
                 }
             },
             {
-                test: /\.css?$/,
-                use: extractCSS.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader']
-                })
-            },
-            {
                 test: /\.less?$/,
-                use: extractCSS.extract({
+                use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'less-loader']
+                    use: [{
+                        loader: 'css-loader',
+                        options: { minimize: true }
+                    }, 'postcss-loader', 'less-loader']
                 })
             }
         ]

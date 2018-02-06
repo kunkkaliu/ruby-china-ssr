@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import store from './store';
 import Root from './containers/Root';
-import './assets/style/bootstrap.css';
+import './assets/style/bootstrap.less';
 import './index.less';
 
 render(

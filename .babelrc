@@ -2,7 +2,7 @@
   "presets": [[
     "env", {
       "targets": {
-        "chrome": "62"
+        "browsers": ["last 2 versions"]
       },
       "useBuiltIns": true,
       "debug": false
