@@ -4,6 +4,15 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const extractCSS = new ExtractTextPlugin({
+    filename: 'static/css/[name]-one.[contenthash].css',
+    allChunks: true
+});
+const extractLESS = new ExtractTextPlugin({
+    filename: 'static/css/[name]-two.[contenthash].css',
+    allChunks: true
+});
+
 var distPath = path.join(__dirname, 'dist');
 
 module.exports = {
@@ -17,10 +26,12 @@ module.exports = {
         filename: 'static/js/[name].js',
         publicPath: '/'
     },
-    eslint: {
-        configFile: './.eslintrc'
-    },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        }),
         new HtmlWebpackPlugin({
             template: __dirname + '/index.html',
             filename: 'index.html',
@@ -35,43 +46,56 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, '/src/assets/lib'),
             to: path.join(__dirname, '/dist/static/lib')
-        }])
+        }]),
+        extractCSS
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['*', '.js', '.jsx']
     },
     module: {
-        preLoaders: [
+        rules: [
             {
                 test: /\.(js|jsx)$/,
-                loaders: ['eslint-loader'],
+                enforce: 'pre',
+                loader: 'eslint-loader',
                 exclude: /node_modules/,
-                include: __dirname 
-            }
-        ],
-        loaders: [
+                include: __dirname
+            },
             {
                 test: /\.(js|jsx)$/,
-                loaders: ['babel-loader'],
+                loader: 'babel-loader',
                 exclude: /node_modules/,
                 include: __dirname
             },
             {
                 test: /\.(png|jpe?g|gif)(\?.*)?$/,
-                loader: 'url-loader?limit=10240&name=static/images/[name].[hash:8].[ext]'
+                loader: 'url-loader',
+                options: {
+                    limit: 10240,
+                    name: 'static/images/[name].[hash:8].[ext]'
+                }
             },
             {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-                loader: 'url-loader?limit=10240&name=static/fonts/[name].[hash:8].[ext]'
+                loader: 'url-loader',
+                options: {
+                    limit: 10240,
+                    name: 'static/fonts/[name].[hash:8].[ext]'
+                }
             },
             {
                 test: /\.css?$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!postcss-loader?sourceMap")
+                use: extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader']
+                })
             },
             {
                 test: /\.less?$/,
-                loader:  ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!postcss-loader?sourceMap!less-loader?sourceMap"),
-                include: __dirname
+                use: extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader', 'less-loader']
+                })
             }
         ]
     }

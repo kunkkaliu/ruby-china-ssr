@@ -1,9 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var base = require('./webpack.config');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var SplitHashPlugin = require('split-hash-webpack-plugin');
 var AssetsPlugin = require('assets-webpack-plugin');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 base.devtool = 'source-map';
 // add hot-reload related code to entry chunks
@@ -22,28 +21,31 @@ base.output.chunkFilename = 'static/js/[name].[chunkhash].js';
 // https://webpack.github.io/docs/code-splitting.html
 // http://survivejs.com/webpack/building-with-webpack/splitting-bundles/
 base.plugins.push(
-    new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
-    }),
     new AssetsPlugin({
         path: path.join(__dirname, 'dist'),
         filename: 'assets.json',
         fullPath: false
     }),
-    new webpack.optimize.UglifyJsPlugin({
+    // new webpack.optimize.UglifyJsPlugin({
+    //     sourceMap: true,
+    //     compress: {
+    //         warnings: false,
+    //         drop_debugger: true,
+    //         drop_console: true
+    //     },
+    //     output: {
+    //         comments: false
+    //     }
+    // }),
+    new UglifyJsPlugin({
         sourceMap: true,
-        compress: {
-            warnings: false,
-            drop_debugger: true,
-            drop_console: true
-        },
-        output: {
-            comments: false
+        uglifyOptions: {
+            compress: {
+                warnings: false,
+                drop_debugger: true,
+                drop_console: true
+            }
         }
-    }),
-    new SplitHashPlugin(),
-    new ExtractTextPlugin("static/css/[name].[contenthash].css", {
-        allChunks: true
     }),
     // extract vendor chunks
     new webpack.optimize.CommonsChunkPlugin({
@@ -59,9 +61,8 @@ base.plugins.push(
         filename: 'static/js/manifest.[chunkhash].js',
         chunks: ['common']
     }),
-    new webpack.optimize.DedupePlugin(),
     // 允许错误不打断程序
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
 );
 
 module.exports = base;

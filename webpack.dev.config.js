@@ -11,8 +11,6 @@ Object.keys(base.entry).forEach(function (name) {
 // base.entry.unshift('babel-polyfill', 'react-hot-loader/patch', 'webpack-hot-middleware/client');
 base.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')}),
     new ExtractTextPlugin("static/css/[name].css", {
         allChunks: true
     }),

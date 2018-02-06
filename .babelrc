@@ -1,4 +1,12 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
-  "plugins": ["react-hot-loader/babel", "transform-runtime", "transform-decorators-legacy", "add-module-exports"]
+  "presets": [[
+    "env", {
+      "targets": {
+        "chrome": "62"
+      },
+      "useBuiltIns": true,
+      "debug": false
+    }
+  ], "react", "stage-0"],
+  "plugins": ["transform-decorators-legacy", "add-module-exports"]
 }
