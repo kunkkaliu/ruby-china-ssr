@@ -18,11 +18,6 @@ module.exports = {
         publicPath: '/'
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-        }),
         new HtmlWebpackPlugin({
             template: __dirname + '/index.html',
             filename: 'index.html',
@@ -75,6 +70,12 @@ module.exports = {
             },
             {
                 test: /\.less?$/,
+                // use: ['style-loader', {
+                //     loader: 'css-loader',
+                //     options: {
+                //         minimize: true
+                //     }
+                // }, 'postcss-loader', 'less-loader']
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [{

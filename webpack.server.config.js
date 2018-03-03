@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         main: ['./src/serverRender.jsx']
     },
+    mode: 'production',
     target: 'node',
     output: {
         path: distPath,

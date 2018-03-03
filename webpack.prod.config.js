@@ -5,6 +5,7 @@ var AssetsPlugin = require('assets-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+base.mode = 'production';
 base.devtool = 'source-map';
 // add hot-reload related code to entry chunks
 Object.keys(base.entry).forEach(function (name) {
@@ -15,6 +16,21 @@ Object.keys(base.entry).forEach(function (name) {
 base.output.filename = 'static/js/[name].[chunkhash].js';
 base.output.chunkFilename = 'static/js/[name].[chunkhash].js';
 // add webpack plugins
+
+base.optimization = {
+    runtimeChunk: {
+        name: "manifest"
+    },
+    splitChunks: {
+        cacheGroups: {
+            common: {
+                test: /[\\/]node_modules[\\/]/,
+                name: "common",
+                chunks: "all"
+            }
+        }
+    }
+};
 
 // 减小bundle size是个很大的学问...
 // https://chrisbateman.github.io/webpack-visualizer/
@@ -59,24 +75,21 @@ base.plugins.push(
             }
         }
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
+    new webpack.HashedModuleIdsPlugin()
     // extract vendor chunks
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        filename: 'static/js/common.[chunkhash].js',
-        minChunks: function (module, count) {
-            return module.context && module.context.indexOf('node_modules') >= 0;
-        }
-    }),
-    // extract manifest chunks
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'manifest',
-        filename: 'static/js/manifest.[chunkhash].js',
-        chunks: ['common']
-    }),
-    // 允许错误不打断程序
-    new webpack.NoEmitOnErrorsPlugin()
+    // new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'common',
+    //     filename: 'static/js/common.[chunkhash].js',
+    //     minChunks: function (module, count) {
+    //         return module.context && module.context.indexOf('node_modules') >= 0;
+    //     }
+    // }),
+    // // extract manifest chunks
+    // new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'manifest',
+    //     filename: 'static/js/manifest.[chunkhash].js',
+    //     chunks: ['common']
+    // })
 );
 
 module.exports = base;
