@@ -29,3 +29,11 @@ Format.date = (time) => {
     return pluralize((between / 86400).toFixed(0), ' 天前');
 };
 export { Format };
+
+export function getSmallAvatar(path) {
+    const pathArr = path.split('!');
+    if (pathArr.length > 1 && pathArr[pathArr.length - 1] === 'large') {
+        pathArr[pathArr.length - 1] = 'md';
+    }
+    return pathArr.join('!');
+}

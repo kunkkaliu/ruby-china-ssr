@@ -8,6 +8,7 @@ import {
     GETREPLIES_PENDING,
     GETREPLIES_SUCCESS,
 } from '../actions/common';
+import { getSmallAvatar } from '../utils';
 
 const initialState = {
     results: {
@@ -19,12 +20,22 @@ const initialState = {
 
 
 export default function dashboard(state = initialState, action = {}) {
+    let topics;
+    let topic;
+    let replies;
     switch (action.type) {
         case GETTOPICS_SUCCESS:
+            topics = action.payload.data.topics || [];
+            topics.forEach((item) => {
+                const { user } = item;
+                if (user.avatar_url) {
+                    user.avatar_url = getSmallAvatar(user.avatar_url);
+                }
+            });
             return Object.assign({}, state, {
                 results: {
                     ...state.results,
-                    topics: action.payload.data.topics,
+                    topics,
                 },
             });
         case GETTOPIC_PENDING:
@@ -35,10 +46,14 @@ export default function dashboard(state = initialState, action = {}) {
                 },
             });
         case GETTOPIC_SUCCESS:
+            topic = action.payload.data.topic || {};
+            if (topic.user && topic.user.avatar_url) {
+                topic.user.avatar_url = getSmallAvatar(topic.user.avatar_url);
+            }
             return Object.assign({}, state, {
                 results: {
                     ...state.results,
-                    topic: action.payload.data.topic,
+                    topic,
                 },
             });
         case GETREPLIES_PENDING:
@@ -49,10 +64,17 @@ export default function dashboard(state = initialState, action = {}) {
                 },
             });
         case GETREPLIES_SUCCESS:
+            replies = action.payload.data.replies || [];
+            replies.forEach((item) => {
+                const { user } = item;
+                if (user.avatar_url) {
+                    user.avatar_url = getSmallAvatar(user.avatar_url);
+                }
+            });
             return Object.assign({}, state, {
                 results: {
                     ...state.results,
-                    replies: action.payload.data.replies,
+                    replies,
                 },
             });
         default:
